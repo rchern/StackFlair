@@ -9,6 +9,7 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using System.Web;
 using Stacky;
+using cfg = System.Configuration.ConfigurationManager;
 
 namespace StackFlair.Web {
 	public class TemplateOptions {
@@ -436,9 +437,7 @@ namespace StackFlair.Web {
 	}
 
 	public static class Utility {
-		public static string Version = "1.0";
-		public static string ApiKey = "VkUqga2oSkipyf-l9fi7sw";
-
+		
 		public static string ToHex(this Color color) {
 			return string.Format("{0:X2}{1:X2}{2:X2}", color.R, color.G, color.B);
 		}
@@ -459,7 +458,7 @@ namespace StackFlair.Web {
 			}
 		}
 		public static BadgeCounts GetBadgeCounts(Site site, int userId) {
-			var client = new StackyClient(Version, ApiKey, site, new UrlClient(), new JsonProtocol());
+			var client = new StackyClient(cfg.AppSettings["ApiVersion"], cfg.AppSettings["ApiKey"], site, new UrlClient(), new JsonProtocol());
 			var siteUser = client.GetUser(userId);
 			return siteUser.BadgeCounts;
 		}

@@ -13,7 +13,9 @@
 		Select a site:
 		<asp:DropDownList runat="server" ID="ddlSites" /> 
 		and your numeric user id
-		<asp:TextBox runat="server" ID="txtUserID" />   
+		<asp:TextBox runat="server" ID="txtUserID" /> 
+		<br />Show global flair:
+		<asp:CheckBox runat="server" ID="cbGlobal" />  
 		<br />Select a format:
 		<asp:RadioButtonList runat="server" ID="rblFormat" RepeatDirection="Horizontal" RepeatLayout="Flow">
 			<asp:ListItem Text="Html" Value="html" />

@@ -10,6 +10,7 @@ using System.Web.UI;
 using Data;
 using Stacky;
 using System.Drawing;
+using cfg = System.Configuration.ConfigurationManager;
 
 namespace StackFlair.Web {
 	public partial class Default : System.Web.UI.Page {
@@ -29,7 +30,7 @@ namespace StackFlair.Web {
 				sites = stackAuthClient.GetSites().Where(s => s.State != SiteState.Linked_Meta);
 				var siteCreation = new Dictionary<DateTime, Site>();
 				foreach (var site in sites) {
-					var siteClient = new StackyClient(Utility.Version, Utility.ApiKey, site, new UrlClient(), new JsonProtocol());
+					var siteClient = new StackyClient(cfg.AppSettings["ApiVersion"], cfg.AppSettings["ApiKey"], site, new UrlClient(), new JsonProtocol());
 					var user = siteClient.GetUser(-1);
 					siteCreation.Add(user.CreationDate, site);
 				}
@@ -45,8 +46,10 @@ namespace StackFlair.Web {
 			var associationId = StackFlair.GetAssociationId(userId, siteName);
 			var options = "";
 			if (cbBeta.Checked) { options += ",noBeta"; }
+			if (!cbGlobal.Checked) { options += ",only=" + siteName.Replace(" ",""); }
 			if (!string.IsNullOrEmpty(ddlThemes.SelectedValue)) { options += ",theme=" + ddlThemes.SelectedValue; }
-			Response.Redirect("~/Generate" + "/options/" + options + "/" + associationId.ToString() + "." + rblFormat.SelectedValue);
+			if (!string.IsNullOrEmpty(options)) { options = "/options/" + options.Substring(1); }
+			Response.Redirect("~/Generate" + options + "/" + associationId.ToString() + "." + rblFormat.SelectedValue);
 		}
 	}
 }

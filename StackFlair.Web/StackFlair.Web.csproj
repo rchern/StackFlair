@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="Generate.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
@@ -93,6 +94,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Generate.aspx.cs">
       <DependentUpon>Generate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -113,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConnectionStrings.config" />
+    <Content Include="AppSettings.config" />
     <None Include="DataClasses.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataClasses.designer.cs</LastGenOutput>
