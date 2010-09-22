@@ -62,7 +62,7 @@ namespace StackFlair.Web {
 				"	.stackFlair a { text-decoration:none; font-weight:bold;}" +
 				"	.stackFlair img { border:none; }" +
 				"	.stackFlair .modFlair { color:#" + TemplateOptions.ModColor.ToHex() + "; }" +
-				"	.stackFlair .reputation { float:right; font-weight:bold; padding-left:" + TemplateOptions.Spacing + "px; }" +
+				"	.stackFlair .reputation { color: #" + TemplateOptions.RepColor.ToHex() + "; float:right; font-weight:bold; padding-left:" + TemplateOptions.Spacing + "px; }" +
 				"	.stackFlair .badges { margin-left:" + TemplateOptions.Spacing + "px; font-size:" + TemplateOptions.MiddleLineSize + "pt; }" +
 				"	.stackFlair .goldBadge { color:#" + TemplateOptions.GoldColor.ToHex() + "; }" +
 				"	.stackFlair .silverBadge { color:#" + TemplateOptions.SilverColor.ToHex() + "; }" +
@@ -141,7 +141,7 @@ namespace StackFlair.Web {
 			int repWidth = (int)graphics.MeasureString(rep, topLineFont).Width;
 			int neededWidth = rightCol + usernameWidth + TemplateOptions.Spacing + repWidth + TemplateOptions.Spacing + TemplateOptions.BorderWidth;
 			actualWidth = Math.Max(neededWidth, minWidth);
-			Brush repBrush = new SolidBrush(Color.Black);
+			Brush repBrush = new SolidBrush(TemplateOptions.RepColor);
 			graphics.DrawString(rep, topLineFont, repBrush, actualWidth - TemplateOptions.Spacing - repWidth, topLine);
 
 			//draw mod and badges
@@ -207,6 +207,28 @@ namespace StackFlair.Web {
 				MiddleLineSize = 9,
 				RepColor = Color.FromArgb(51, 51, 51),
 				FontFamily = "Helvetica, sans-serif"
+			};
+		}
+	}
+
+	public class BlackTemplate : Template {
+		public BlackTemplate(StackData data, StackFlairOptions flairOptions)
+			: base(data, flairOptions) {
+			TemplateOptions = new TemplateOptions() {
+				GravatarSize = 48,
+				Spacing = 5,
+				BorderColor = Color.Black,
+				BackgroundColor=Color.FromArgb(34,34,34),
+				BorderWidth=1,
+				GoldColor = Color.FromArgb(255,204,0),
+				SilverColor = Color.FromArgb(119,119,119),
+				BronzeColor = Color.FromArgb(205,127,50),
+				FontFamily = "Helvetica, sans-serif",
+				TopLineSize=10,
+				MiddleLineSize=9,
+				ModColor = Color.White,
+				NameColor=Color.White,
+				RepColor=Color.White
 			};
 		}
 	}

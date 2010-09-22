@@ -25,6 +25,7 @@
 		<asp:DropDownList runat="server" ID="ddlThemes">
 			<asp:ListItem Text="Default" Value="" />
 			<asp:ListItem Text="Glitter" Value="glitter" />
+			<asp:ListItem Text="Black" Value="black" />
 		</asp:DropDownList>
 		<br />Exclude beta SE sites: 
 		<asp:CheckBox runat="server" ID="cbBeta" />

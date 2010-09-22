@@ -74,15 +74,7 @@ namespace StackFlair.Web {
 		}
 
 		private void GenerateHtmlFlair(StackData stackData, StackFlairOptions flairOptions) {
-			ITemplate template = null;
-			switch (flairOptions.Theme) {
-				case "glitter":
-					template = new GlitterTemplate(stackData, flairOptions);
-					break;
-				default:
-					template = new DefaultTemplate(stackData, flairOptions);
-					break;
-			}
+			ITemplate template = GetTemplate(flairOptions, stackData);
 			string flair = template.GenerateHtml();
 
 			Response.Clear();
@@ -91,21 +83,29 @@ namespace StackFlair.Web {
 		}
 
 		private void GenerateImageFlair(StackData stackData, StackFlairOptions flairOptions) {
-			ITemplate template = null;
-			switch (flairOptions.Theme) {
-				case "glitter":
-					template = new GlitterTemplate(stackData, flairOptions);
-					break;
-				default:
-					template = new DefaultTemplate(stackData, flairOptions);
-					break;
-			} 
+			ITemplate template = GetTemplate(flairOptions, stackData);
 			Image flair = template.GenerateImage();
 
 			Response.Clear();
 			Response.ContentType = "image/" + flairOptions.Format.ToString().ToLower();
 			flair.Save(Response.OutputStream, Utility.ImageFormats[flairOptions.Format]);
 			Response.End();
+		}
+	
+		private ITemplate GetTemplate(StackFlairOptions flairOptions, StackData stackData) {
+			ITemplate template = null;
+			switch (flairOptions.Theme) {
+				case "glitter":
+					template = new GlitterTemplate(stackData, flairOptions);
+					break;
+				case "black":
+					template = new BlackTemplate(stackData, flairOptions);
+					break;
+				default:
+					template = new DefaultTemplate(stackData, flairOptions);
+					break;
+			}
+			return template;
 		}
 	}
 }
