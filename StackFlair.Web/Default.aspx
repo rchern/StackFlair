@@ -26,6 +26,8 @@
 			<asp:ListItem Text="Default" Value="" />
 			<asp:ListItem Text="Glitter" Value="glitter" />
 			<asp:ListItem Text="Black" Value="black" />
+			<asp:ListItem Text="Hot Dog" Value="hotdog" />
+			<asp:ListItem Text="HoLy" Value="holy" />
 		</asp:DropDownList>
 		<br />Exclude beta SE sites: 
 		<asp:CheckBox runat="server" ID="cbBeta" />

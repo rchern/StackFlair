@@ -101,6 +101,12 @@ namespace StackFlair.Web {
 				case "black":
 					template = new BlackTemplate(stackData, flairOptions);
 					break;
+				case "hotdog":
+					template = new HotDogTemplate(stackData, flairOptions);
+					break;
+				case "holy":
+					template = new HoLyTemplate(stackData, flairOptions);
+					break;
 				default:
 					template = new DefaultTemplate(stackData, flairOptions);
 					break;

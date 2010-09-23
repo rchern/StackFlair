@@ -47,7 +47,7 @@ namespace StackFlair.Web {
 				Data.Sites = Data.Sites.Where(s => s.SiteState == SiteState.Normal).ToList();
 			}
 			if (!String.IsNullOrEmpty(FlairOptions.Only)) {
-				Data.Sites = new List<StackSiteData>() {Data.Sites.Single(s => s.SiteName.Replace(" ", "").Equals(FlairOptions.Only,StringComparison.InvariantCultureIgnoreCase))};
+				Data.Sites = new List<StackSiteData>() { Data.Sites.Single(s => s.SiteName.Replace(" ", "").Equals(FlairOptions.Only, StringComparison.InvariantCultureIgnoreCase)) };
 			}
 		}
 
@@ -218,17 +218,61 @@ namespace StackFlair.Web {
 				GravatarSize = 48,
 				Spacing = 5,
 				BorderColor = Color.Black,
-				BackgroundColor=Color.FromArgb(34,34,34),
-				BorderWidth=1,
-				GoldColor = Color.FromArgb(255,204,0),
-				SilverColor = Color.FromArgb(119,119,119),
-				BronzeColor = Color.FromArgb(205,127,50),
+				BackgroundColor = Color.FromArgb(34, 34, 34),
+				BorderWidth = 1,
+				GoldColor = Color.FromArgb(255, 204, 0),
+				SilverColor = Color.FromArgb(119, 119, 119),
+				BronzeColor = Color.FromArgb(205, 127, 50),
 				FontFamily = "Helvetica, sans-serif",
-				TopLineSize=10,
-				MiddleLineSize=9,
+				TopLineSize = 10,
+				MiddleLineSize = 9,
 				ModColor = Color.White,
-				NameColor=Color.White,
-				RepColor=Color.White
+				NameColor = Color.White,
+				RepColor = Color.White
+			};
+		}
+	}
+
+	public class HotDogTemplate : Template {
+		public HotDogTemplate(StackData data, StackFlairOptions flairOptions)
+			: base(data, flairOptions) {
+			TemplateOptions = new TemplateOptions() {
+				GravatarSize = 48,
+				Spacing = 5,
+				BorderColor = Color.Black,
+				BackgroundColor = Color.Red,
+				BorderWidth = 1,
+				BronzeColor = Color.FromArgb(77, 68, 0),
+				FontFamily = "Helvetica, sans-serif",
+				GoldColor = Color.FromArgb(255, 204, 0),
+				MiddleLineSize = 9,
+				ModColor = Color.Yellow,
+				NameColor = Color.Yellow,
+				RepColor = Color.Yellow,
+				SilverColor = Color.FromArgb(198, 198, 198),
+				TopLineSize = 10
+			};
+		}
+	}
+
+	public class HoLyTemplate : Template {
+		public HoLyTemplate(StackData data, StackFlairOptions flairOptions)
+			: base(data, flairOptions) {
+			TemplateOptions = new TemplateOptions() {
+				GravatarSize = 48,
+				Spacing = 5,
+				BorderColor = Color.Black,
+				BackgroundColor = Color.FromArgb(222, 150, 16),
+				BorderWidth = 1,
+				BronzeColor = Color.FromArgb(77, 68, 0),
+				FontFamily = "Helvetica,sans-serif",
+				GoldColor = Color.FromArgb(255, 204, 0),
+				MiddleLineSize = 9,
+				ModColor = Color.FromArgb(222, 81, 0),
+				NameColor = Color.FromArgb(82, 81, 181),
+				RepColor = Color.FromArgb(222, 81, 0),
+				SilverColor = Color.FromArgb(119, 119, 119),
+				TopLineSize = 10
 			};
 		}
 	}
@@ -377,9 +421,9 @@ namespace StackFlair.Web {
 			//draw rep
 			string rep = Utility.FormatTotalRep(Data.TotalRep);
 			foreach (Image img in GlitterizeImage(rep)) {
-					graphics.DrawImage(img, topX, topLine);
-					topX += img.Width;
-					if (img.Height > maxHeight) { maxHeight = img.Height; }
+				graphics.DrawImage(img, topX, topLine);
+				topX += img.Width;
+				if (img.Height > maxHeight) { maxHeight = img.Height; }
 			}
 
 			middleLine = maxHeight + TemplateOptions.Spacing;
@@ -390,12 +434,12 @@ namespace StackFlair.Web {
 				string modString = Data.ModCount.ToString();
 				Font modFont = new Font(TemplateOptions.FontFamily, 25f);
 				Brush modBrush = new SolidBrush(TemplateOptions.ModColor);
-				graphics.DrawString("♦",modFont,modBrush,middleX,middleLine+10);
+				graphics.DrawString("♦", modFont, modBrush, middleX, middleLine + 10);
 				middleX += (int)graphics.MeasureString("♦", modFont).Width;
 				foreach (Image img in GlitterizeImage(modString)) {
 					graphics.DrawImage(img, middleX, middleLine);
 					middleX += img.Width;
-					if (img.Height+middleLine > maxHeight) { maxHeight = img.Height+middleLine; }
+					if (img.Height + middleLine > maxHeight) { maxHeight = img.Height + middleLine; }
 				}
 			}
 			middleX += TemplateOptions.Spacing;
@@ -408,7 +452,7 @@ namespace StackFlair.Web {
 				foreach (Image img in GlitterizeImage(goldString)) {
 					graphics.DrawImage(img, middleX, middleLine);
 					middleX += img.Width;
-					if (img.Height+middleLine > maxHeight) { maxHeight = img.Height+middleLine; }
+					if (img.Height + middleLine > maxHeight) { maxHeight = img.Height + middleLine; }
 				}
 			}
 
@@ -422,7 +466,7 @@ namespace StackFlair.Web {
 				foreach (Image img in GlitterizeImage(silverString)) {
 					graphics.DrawImage(img, middleX, middleLine);
 					middleX += img.Width;
-					if (img.Height+middleLine > maxHeight) { maxHeight = img.Height+middleLine; }
+					if (img.Height + middleLine > maxHeight) { maxHeight = img.Height + middleLine; }
 				}
 			}
 
@@ -436,7 +480,7 @@ namespace StackFlair.Web {
 				foreach (Image img in GlitterizeImage(bronzeString)) {
 					graphics.DrawImage(img, middleX, middleLine);
 					middleX += img.Width;
-					if (img.Height+middleLine > maxHeight) { maxHeight = img.Height+middleLine; }
+					if (img.Height + middleLine > maxHeight) { maxHeight = img.Height + middleLine; }
 				}
 			}
 
@@ -446,8 +490,8 @@ namespace StackFlair.Web {
 			//draw favicons
 			int bottomX = TemplateOptions.BorderWidth + TemplateOptions.Spacing + TemplateOptions.GravatarSize + TemplateOptions.Spacing;
 			foreach (var favicon in favicons) {
-				graphics.DrawImage(favicon, bottomX, bottomLine,32,32);
-				bottomX += 32 + TemplateOptions.Spacing*5;
+				graphics.DrawImage(favicon, bottomX, bottomLine, 32, 32);
+				bottomX += 32 + TemplateOptions.Spacing * 5;
 			}
 
 			int backgroundWidth = actualWidth - 2 * TemplateOptions.BorderWidth;
@@ -459,7 +503,7 @@ namespace StackFlair.Web {
 	}
 
 	public static class Utility {
-		
+
 		public static string ToHex(this Color color) {
 			return string.Format("{0:X2}{1:X2}{2:X2}", color.R, color.G, color.B);
 		}
