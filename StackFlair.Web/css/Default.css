@@ -1,0 +1,142 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+#flair {
+    margin: 10px 0;
+    width: 500px;
+    border: 5px solid #ccc;
+    padding: 12px 0 25px;
+    margin: 0 auto;
+    
+    -moz-border-radius: 10px;
+    
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+#flair > ul > li {
+    padding: 6px 10px;
+}
+
+#flair > ul > li:hover {
+    background-color: #f3f3f3;
+}
+
+#flair > ul > li > label {
+    width: 150px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 4px;
+    color: #666;
+}
+
+#flair > ul > li:hover > label {
+    color: #333;
+}
+
+.buttonset {
+    display: inline-block;
+}
+
+.ui-button {
+    font-size: 11px;
+}
+
+input[type='text'] {
+    font-size: 13px;
+    border: 1px solid #ccc;
+    padding: 3px 4px;
+    margin-left: 3px;
+    
+    -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+input[type='text']:hover, input[type='text']:focus {
+    border-color: #999;
+}
+
+input[type='checkbox'] {
+    vertical-align: bottom;
+}
+
+select {
+    padding: 2px 4px;
+    vertical-align: middle;
+}
+
+h3 {
+    padding: 5px 0;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    color: #999;
+}
+
+li:hover h3 {
+    color: #333;
+}
+
+#ddlThemes {
+    overflow: hidden;
+    padding: 5px 0;
+}
+
+#ddlThemes li {
+    float: left;
+    width: 49%;
+    text-align: center;
+    border: 1px solid transparent;
+    margin: 4px 0;
+    opacity: 0.7;
+}
+
+#ddlThemes li label {
+    display: block;
+    padding: 4px 0;
+    cursor: pointer;
+}
+
+#ddlThemes li strong {
+    display: block;
+}
+
+#ddlThemes li:hover, #ddlThemes li.selected {
+    border-color: #999;
+    opacity: 1;
+}
+
+#ddlThemes li.selected {
+    background-color: #ccc;
+}
+
+#ddlThemes li input {
+    position: absolute;
+    left: -9999px;
+}
+
+#btnSubmit {
+    width: 130px;
+    margin: 20px auto 5px;
+    display: block;
+    font-size: 14px;
+}
+
+.ui-button .ui-button-text {
+    padding: 0.3em 1em 0.45em;
+}
+
+.ui-autocomplete {
+    font-size: 11px;
+}
+
+.ui-menu .ui-menu-item a {
+    padding: 0.4em 0.6em 0.5em;
+}
+
+.ui-menu .ui-menu-item a img {
+    vertical-align: bottom;
+    padding-right: 7px;
+}
+/*img { display:inline;}​*/
+.li { list-style-type:cicle; }

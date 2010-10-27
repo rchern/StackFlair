@@ -1,23 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
-  <publishProfile publishUrl="c:\stackflair" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
-    <file relUrl="Web.config" publishTime="09/21/2010 19:34:52" />
-    <file relUrl="bin/Newtonsoft.Json.dll" publishTime="09/12/2010 15:02:24" />
-    <file relUrl="bin/Stacky.xml" publishTime="09/12/2010 15:05:40" />
-    <file relUrl="bin/Newtonsoft.Json.pdb" publishTime="09/12/2010 15:02:24" />
-    <file relUrl="bin/Stacky.pdb" publishTime="09/12/2010 15:05:40" />
-    <file relUrl="bin/System.Drawing.Html.dll" publishTime="09/13/2010 10:39:06" />
-    <file relUrl="bin/Newtonsoft.Json.xml" publishTime="09/12/2010 15:02:24" />
-    <file relUrl="ConnectionStrings.config" publishTime="09/21/2010 14:13:36" />
-    <file relUrl="AppSettings.config" publishTime="09/21/2010 19:16:12" />
-    <file relUrl="bin/RouteDebug.dll" publishTime="09/12/2010 19:59:34" />
-    <file relUrl="bin/StackFlair.Web.pdb" publishTime="09/22/2010 21:30:44" />
-    <file relUrl="Generate.aspx" publishTime="09/15/2010 08:37:23" />
+  <publishProfile publishUrl="c:\stackflair\web" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="css/redmond/images/ui-icons_cd0a0a_256x240.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="js/jquery-1.4.2.min.js" publishTime="10/08/2010 19:24:11" />
     <file relUrl="Global.asax" publishTime="09/13/2010 01:12:12" />
-    <file relUrl="bin/System.Drawing.Html.pdb" publishTime="09/13/2010 10:39:06" />
-    <file relUrl="Default.aspx" publishTime="09/22/2010 21:20:32" />
+    <file relUrl="css/reset.css" publishTime="10/08/2010 20:53:11" />
+    <file relUrl="css/redmond/images/ui-bg_flat_0_aaaaaa_40x100.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="css/redmond/images/ui-bg_inset-hard_100_fcfdfd_1x100.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="css/redmond/images/ui-icons_6da8d5_256x240.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="css/redmond/images/ui-bg_flat_55_fbec88_40x100.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="bin/System.Drawing.Html.dll" publishTime="09/13/2010 10:39:06" />
+    <file relUrl="css/redmond/images/ui-icons_d8e7f3_256x240.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="css/redmond/images/ui-icons_469bdd_256x240.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="index.html" publishTime="10/08/2010 20:23:07" />
+    <file relUrl="css/redmond/images/ui-bg_glass_75_d0e5f5_1x400.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="css/redmond/images/ui-bg_glass_95_fef1ec_1x400.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="css/redmond/images/ui-icons_f9bd01_256x240.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="css/redmond/jquery-ui-1.8.5.custom.css" publishTime="10/08/2010 19:24:15" />
+    <file relUrl="bin/RouteDebug.dll" publishTime="09/12/2010 19:59:34" />
+    <file relUrl="Generate.ashx" publishTime="10/07/2010 15:03:06" />
     <file relUrl="bin/AspAlliance.CacheManager.dll" publishTime="09/15/2010 13:42:08" />
+    <file relUrl="Default.aspx" publishTime="10/09/2010 01:16:06" />
+    <file relUrl="bin/Newtonsoft.Json.dll" publishTime="09/12/2010 15:02:24" />
+    <file relUrl="bin/StackFlair.Web.dll" publishTime="10/08/2010 23:30:01" />
+    <file relUrl="bin/StackFlair.Web.pdb" publishTime="10/08/2010 23:30:01" />
+    <file relUrl="css/redmond/images/ui-icons_2e83ff_256x240.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="AppSettings.config" publishTime="09/30/2010 10:22:13" />
+    <file relUrl="css/redmond/images/ui-bg_inset-hard_100_f5f8f9_1x100.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="css/redmond/images/ui-bg_gloss-wave_55_5c9ccc_500x100.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="js/ui.selectmenu.js" publishTime="10/08/2010 22:32:58" />
+    <file relUrl="css/redmond/images/ui-bg_glass_85_dfeffc_1x400.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="Web.config" publishTime="10/08/2010 23:30:02" />
+    <file relUrl="Generate.aspx" publishTime="09/15/2010 08:37:23" />
+    <file relUrl="css/redmond/images/ui-icons_217bc0_256x240.png" publishTime="10/08/2010 19:18:43" />
+    <file relUrl="ConnectionStrings.config" publishTime="09/21/2010 14:13:36" />
+    <file relUrl="css/ui.selectmenu.css" publishTime="10/08/2010 20:05:45" />
+    <file relUrl="js/jquery-ui-1.8.5.custom.min.js" publishTime="10/08/2010 19:24:11" />
     <file relUrl="bin/Stacky.dll" publishTime="09/12/2010 15:05:40" />
-    <file relUrl="bin/StackFlair.Web.dll" publishTime="09/22/2010 21:30:44" />
   </publishProfile>
 </publishData>

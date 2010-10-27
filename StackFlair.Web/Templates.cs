@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Runtime.CompilerServices;
+using System.Security.AccessControl;
 using System.Web;
+using Data;
 using Stacky;
 using cfg = System.Configuration.ConfigurationManager;
 
@@ -68,7 +70,7 @@ namespace StackFlair.Web {
 				"	.stackFlair .silverBadge { color:#" + TemplateOptions.SilverColor.ToHex() + "; }" +
 				"	.stackFlair .bronzeBadge { color:#" + TemplateOptions.BronzeColor.ToHex() + "; }" +
 				"	.stackFlair .sites img {padding:" + TemplateOptions.Spacing / 2 + "px; }​" +
-				"	.stackFlair .cl { clear:both; height:0px; }" +
+				"	.stackFlair .cl { clear:both; height:0px; }" + " .stackFlair { border-radius:5px; }" +
 				"</style>";
 			string gravatarDiv = String.Format(@"<div class=""gravatar""><a href=""{0}/users/{1}/{2}""><img src=""http://www.gravatar.com/avatar/{3}?s={4}&d=identicon&=PG""></a></div>", Data.DisplayUrl, Data.DisplayId, Data.DisplayName, Data.DisplayHash, TemplateOptions.GravatarSize);
 
@@ -99,19 +101,36 @@ namespace StackFlair.Web {
 
 			return css + html;
 		}
+		protected Image GetFavicon(string siteName) {
+			string filename = cfg.AppSettings["FaviconFolder"] + siteName.Replace(" ", "") + ".png";
+			Image favicon;
+			if (File.Exists(filename)) {
+				favicon = Image.FromStream(new FileStream(filename,FileMode.Open,FileAccess.Read));
+			} else {
+				throw new Exception("Favicon file does not exist");
+			}
+			return favicon;
+		}
 
+		private Image DownloadImage(string url) {
+			Image img = null;
+			using (WebClient wc = new WebClient()) {
+				byte[] imageBytes = wc.DownloadData(url);
+				var ms = new MemoryStream(imageBytes);
+				img = Image.FromStream(ms,true,false);
+			}
+			return img;
+		}
+		
 		public virtual Image GenerateImage() {
 			// Gravatar
 			string gravatarUrl = string.Format("http://www.gravatar.com/avatar/{0}?s={1}&d=identicon&=PG", Data.DisplayHash, TemplateOptions.GravatarSize);
-			byte[] gravatarBytes = new WebClient().DownloadData(gravatarUrl);
-			Image gravatarImage = Image.FromStream(new MemoryStream(gravatarBytes));
-
-			// Favicons
-			List<Image> favicons = Data.Sites.Take(Utility.MaxSites).Select(s => s.Url + "/favicon.ico").Select(faviconUrl => new WebClient().DownloadData(faviconUrl)).Select(faviconBytes => new MemoryStream(faviconBytes)).Select(Image.FromStream).ToList();
+			Image gravatarImage = DownloadImage(gravatarUrl);
 
 			//calculate the size first
+			int faviconSize = 16;
 			int minWidth = TemplateOptions.BorderWidth + TemplateOptions.Spacing + TemplateOptions.GravatarSize +
-						((TemplateOptions.Spacing + favicons[0].Width) * favicons.Count) + TemplateOptions.Spacing + TemplateOptions.BorderWidth;
+						((TemplateOptions.Spacing + faviconSize) * Math.Min(Data.Sites.Count,Utility.MaxSites)) + TemplateOptions.Spacing + TemplateOptions.BorderWidth;
 			int actualWidth = 0;
 			int topLine = TemplateOptions.BorderWidth + TemplateOptions.Spacing;
 			int middleLine = TemplateOptions.GravatarSize / 3 + topLine;
@@ -122,6 +141,8 @@ namespace StackFlair.Web {
 			var bitmap = new Bitmap(1000, 200);
 			Graphics graphics = Graphics.FromImage(bitmap);
 			graphics.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
+			graphics.CompositingMode = CompositingMode.SourceOver;
+			
 
 			//draw border
 			Brush brush = new SolidBrush(TemplateOptions.BackgroundColor);
@@ -146,7 +167,8 @@ namespace StackFlair.Web {
 
 			//draw mod and badges
 			int x = rightCol;
-			Font modBadgeFont = new Font(TemplateOptions.FontFamily, TemplateOptions.MiddleLineSize);
+			Font modBadgeFont = new Font(TemplateOptions.FontFamily, TemplateOptions.MiddleLineSize,FontStyle.Regular,GraphicsUnit.Point,Convert.ToByte(2));
+			
 			if (Data.ModCount > 0) {
 				Brush modBrush = new SolidBrush(TemplateOptions.ModColor);
 				string modString = "♦" + Data.ModCount;
@@ -177,13 +199,25 @@ namespace StackFlair.Web {
 
 			//draw favicons
 			x = TemplateOptions.BorderWidth + TemplateOptions.Spacing + TemplateOptions.GravatarSize + TemplateOptions.Spacing;
-			foreach (var favicon in favicons) {
+			
+			// Favicons
+		    List<Image> favicons = new List<Image>();
+			foreach (var site in Data.Sites.Take(Utility.MaxSites).ToList()) {
+				var favicon = GetFavicon(site.SiteName);
+			    favicons.Add(favicon);
 				graphics.DrawImage(favicon, x, bottomLine);
 				x += favicon.Width + TemplateOptions.Spacing;
 			}
+			
 
 			graphics.DrawRectangle(new Pen(TemplateOptions.BorderColor, TemplateOptions.BorderWidth), TemplateOptions.BorderWidth, TemplateOptions.BorderWidth, actualWidth - 2 * TemplateOptions.BorderWidth, height - 2 * TemplateOptions.BorderWidth);
 			bitmap = bitmap.Clone(new Rectangle(0, 0, actualWidth, height), PixelFormat.DontCare);
+
+            gravatarImage.Dispose();
+		    foreach (var favicon in favicons) {
+		        favicon.Dispose();
+		    }
+
 			return bitmap;
 		}
 	}
@@ -206,7 +240,7 @@ namespace StackFlair.Web {
 				TopLineSize = 10,
 				MiddleLineSize = 9,
 				RepColor = Color.FromArgb(51, 51, 51),
-				FontFamily = "Helvetica, sans-serif"
+				FontFamily = "Helvetica"
 			};
 		}
 	}
@@ -271,6 +305,28 @@ namespace StackFlair.Web {
 				ModColor = Color.FromArgb(222, 81, 0),
 				NameColor = Color.FromArgb(82, 81, 181),
 				RepColor = Color.FromArgb(222, 81, 0),
+				SilverColor = Color.FromArgb(119, 119, 119),
+				TopLineSize = 10
+			};
+		}
+	}
+
+	public class NimbusTemplate : Template {
+		public NimbusTemplate(StackData data, StackFlairOptions flairOptions)
+			: base(data, flairOptions) {
+			TemplateOptions = new TemplateOptions() {
+				GravatarSize = 48,
+				Spacing = 5,
+				BorderColor = Color.FromArgb(181, 190, 189),
+				BackgroundColor = Color.FromArgb(214, 223, 222),
+				BorderWidth = 1,
+				BronzeColor = Color.FromArgb(214, 113, 16),
+				FontFamily = "Helvetica,sans-serif",
+				GoldColor = Color.FromArgb(221, 153, 34),
+				MiddleLineSize = 9,
+				ModColor = Color.FromArgb(74, 56, 66),
+				NameColor = Color.FromArgb(74, 56, 66),
+				RepColor = Color.FromArgb(74, 56, 66),
 				SilverColor = Color.FromArgb(119, 119, 119),
 				TopLineSize = 10
 			};
@@ -381,10 +437,11 @@ namespace StackFlair.Web {
 			Image gravatarImage = Image.FromStream(new MemoryStream(gravatarBytes));
 
 			// Favicons
-			List<Image> favicons =
-				Data.Sites.Take(Utility.MaxSites).Select(s => s.Url + "/favicon.ico").Select(
-					faviconUrl => new WebClient().DownloadData(faviconUrl)).Select(faviconBytes => new MemoryStream(faviconBytes)).
-					Select(Image.FromStream).ToList();
+			List<Image> favicons = new List<Image>();
+			foreach (var site in Data.Sites.Take(Utility.MaxSites).ToList()) {
+				var favicon = GetFavicon(site.SiteName);
+				favicons.Add(favicon);
+			}
 
 			//calculate the size first
 			int minWidth = TemplateOptions.BorderWidth + TemplateOptions.Spacing + TemplateOptions.GravatarSize +

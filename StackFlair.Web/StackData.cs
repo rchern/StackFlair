@@ -63,5 +63,6 @@ namespace StackFlair.Web {
 		public string Format { get; set; }
 		public string Theme { get; set; }
 		public string Only { get; set; }
+		public bool RoundedCorners { get; set; }
 	}
 }

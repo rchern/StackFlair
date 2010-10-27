@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Xml.Serialization;
 using Data;
+using cfg = System.Configuration.ConfigurationManager;
 
 namespace StackFlair.Web {
 	public partial class Generate : System.Web.UI.Page {
@@ -85,16 +83,26 @@ namespace StackFlair.Web {
 		private void GenerateImageFlair(StackData stackData, StackFlairOptions flairOptions) {
 			ITemplate template = GetTemplate(flairOptions, stackData);
 			Image flair = template.GenerateImage();
-
 			Response.Clear();
 			Response.ContentType = "image/" + flairOptions.Format.ToString().ToLower();
-			flair.Save(Response.OutputStream, Utility.ImageFormats[flairOptions.Format]);
+
+            var cache = Response.Cache;
+		    cache.SetValidUntilExpires(true);
+		    cache.SetCacheability(HttpCacheability.Public);
+            cache.SetExpires(DateTime.Now.AddHours(int.Parse(cfg.AppSettings["FlairDuration"])/2));
+
+			var ms = new MemoryStream();
+			flair.Save(ms, Utility.ImageFormats[flairOptions.Format]);
+			ms.WriteTo(Response.OutputStream);
+			ms.Dispose();
+			flair.Dispose();
 			Response.End();
 		}
-	
+
+		
 		private ITemplate GetTemplate(StackFlairOptions flairOptions, StackData stackData) {
 			ITemplate template = null;
-			switch (flairOptions.Theme) {
+			switch (flairOptions.Theme.ToLower()) {
 				case "glitter":
 					template = new GlitterTemplate(stackData, flairOptions);
 					break;
@@ -106,6 +114,9 @@ namespace StackFlair.Web {
 					break;
 				case "holy":
 					template = new HoLyTemplate(stackData, flairOptions);
+					break;
+				case "nimbus":
+					template = new NimbusTemplate(stackData, flairOptions);
 					break;
 				default:
 					template = new DefaultTemplate(stackData, flairOptions);

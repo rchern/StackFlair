@@ -33,6 +33,9 @@ namespace Data
     partial void InsertStackFlair(StackFlair instance);
     partial void UpdateStackFlair(StackFlair instance);
     partial void DeleteStackFlair(StackFlair instance);
+    partial void InsertStackSite(StackSite instance);
+    partial void UpdateStackSite(StackSite instance);
+    partial void DeleteStackSite(StackSite instance);
     #endregion
 		
 		public DataClassesDataContext(string connection) : 
@@ -64,6 +67,14 @@ namespace Data
 			get
 			{
 				return this.GetTable<StackFlair>();
+			}
+		}
+		
+		public System.Data.Linq.Table<StackSite> StackSites
+		{
+			get
+			{
+				return this.GetTable<StackSite>();
 			}
 		}
 	}
@@ -177,6 +188,188 @@ namespace Data
 					this._Timestamp = value;
 					this.SendPropertyChanged("Timestamp");
 					this.OnTimestampChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StackSites")]
+	public partial class StackSite : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _KeyName;
+		
+		private string _Name;
+		
+		private string _Url;
+		
+		private string _Description;
+		
+		private string _State;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnKeyNameChanging(string value);
+    partial void OnKeyNameChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnUrlChanging(string value);
+    partial void OnUrlChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnStateChanging(string value);
+    partial void OnStateChanged();
+    #endregion
+		
+		public StackSite()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KeyName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string KeyName
+		{
+			get
+			{
+				return this._KeyName;
+			}
+			set
+			{
+				if ((this._KeyName != value))
+				{
+					this.OnKeyNameChanging(value);
+					this.SendPropertyChanging();
+					this._KeyName = value;
+					this.SendPropertyChanged("KeyName");
+					this.OnKeyNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Url", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Url
+		{
+			get
+			{
+				return this._Url;
+			}
+			set
+			{
+				if ((this._Url != value))
+				{
+					this.OnUrlChanging(value);
+					this.SendPropertyChanging();
+					this._Url = value;
+					this.SendPropertyChanged("Url");
+					this.OnUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(400) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_State", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string State
+		{
+			get
+			{
+				return this._State;
+			}
+			set
+			{
+				if ((this._State != value))
+				{
+					this.OnStateChanging(value);
+					this.SendPropertyChanging();
+					this._State = value;
+					this.SendPropertyChanged("State");
+					this.OnStateChanged();
 				}
 			}
 		}

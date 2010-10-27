@@ -32,22 +32,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AspAlliance.CacheManager">
-      <HintPath>..\..\..\..\..\Downloads\AspAlliance.CacheManager.v1.0.60115.01\v1.0.60115.01\AspAlliance.CacheManager.dll</HintPath>
+    <Reference Include="AspAlliance.CacheManager, Version=1.0.60115.1, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\AspAlliance.CacheManager.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\..\Downloads\stacky-5dbe0619cdd5\stacky_5dbe0619cdd5\trunk\Binaries\Stacky\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RouteDebug">
-      <HintPath>..\..\..\..\..\Downloads\RouteDebug-Binary\RouteDebug.dll</HintPath>
+    <Reference Include="PresentationCore" />
+    <Reference Include="RouteDebug, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\RouteDebug.dll</HintPath>
     </Reference>
-    <Reference Include="Stacky">
-      <HintPath>..\..\..\..\..\Downloads\stacky-5dbe0619cdd5\stacky_5dbe0619cdd5\trunk\Binaries\Stacky\Stacky.dll</HintPath>
+    <Reference Include="Stacky, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Stacky.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Drawing.Html">
-      <HintPath>..\..\..\..\..\Downloads\System.Drawing.Html.002\System.Drawing.Html\System.Drawing.Html\bin\Debug\System.Drawing.Html.dll</HintPath>
+    <Reference Include="System.Drawing.Html, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\System.Drawing.Html.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -67,17 +73,42 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\Default.css" />
+    <Content Include="css\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="css\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="css\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="css\redmond\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="css\redmond\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="css\redmond\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="css\redmond\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="css\redmond\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="css\redmond\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="css\redmond\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="css\redmond\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="css\redmond\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="css\redmond\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="css\redmond\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="css\redmond\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="css\redmond\jquery-ui-1.8.5.custom.css" />
+    <Content Include="css\ui.selectmenu.css" />
+    <Content Include="css\reset.css" />
     <Content Include="Default.aspx" />
     <Content Include="Generate.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="index.html" />
+    <Content Include="js\jquery-1.4.2.min.js" />
+    <Content Include="js\jquery-ui-1.8.5.custom.min.js" />
+    <Content Include="js\ui.selectmenu.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +123,9 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Generate.ashx.cs">
+      <DependentUpon>Generate.ashx</DependentUpon>
     </Compile>
     <Compile Include="Generate.aspx.cs">
       <DependentUpon>Generate.aspx</DependentUpon>
@@ -113,12 +147,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConnectionStrings.config" />
-    <Content Include="AppSettings.config" />
+    <Content Include="AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="DataClasses.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataClasses.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Generate.ashx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataClasses.dbml.layout">
@@ -133,7 +170,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>29736</DevelopmentServerPort>
+          <DevelopmentServerPort>19352</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
