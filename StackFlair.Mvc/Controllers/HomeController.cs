@@ -18,7 +18,8 @@ namespace StackFlair.Mvc.Controllers {
 
         public ActionResult Default() {
             var ctx = new App_Data.StackFlairDataContext();
-            var sites = new SelectList(ctx.StackSites, "Url", "Name");
+			var sites = new SelectList(ctx.StackSites, "Url", "Name");
+
             ViewData["sites"] = sites;
             ViewData["userGuid"] = "3f0eac82-1801-410d-b334-234c18ddeeeb";
             return View();

@@ -16,7 +16,7 @@ namespace StackFlair.Mvc.Controllers {
         // GET: /Generate/
 
         public ActionResult Index(string options, string associationId, string format) {
-            StackFlairOptions flairOptions = new StackFlairOptions();
+        	StackFlairOptions flairOptions = new StackFlairOptions() {NoBeta = false, Format = "png", Only = "", Theme = "default"};
             bool noBeta = false;
 
             if (RouteData.Values["options"] != null) {

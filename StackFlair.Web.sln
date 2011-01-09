@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackFlair.Web", "StackFlair.Web\StackFlair.Web.csproj", "{F507F379-9FDA-484E-AFAC-D38FCF88E4CA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackFlair.SiteCaching", "StackFlair.SiteCaching\StackFlair.SiteCaching.csproj", "{CFAAAF47-E9C7-4A4E-A772-1488127AA4D1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackFlair.Mvc", "StackFlair.Mvc\StackFlair.Mvc.csproj", "{7910AC0C-B631-4ED4-8D99-352D9E4EB706}"
@@ -17,16 +15,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F507F379-9FDA-484E-AFAC-D38FCF88E4CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F507F379-9FDA-484E-AFAC-D38FCF88E4CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F507F379-9FDA-484E-AFAC-D38FCF88E4CA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{F507F379-9FDA-484E-AFAC-D38FCF88E4CA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{F507F379-9FDA-484E-AFAC-D38FCF88E4CA}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F507F379-9FDA-484E-AFAC-D38FCF88E4CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F507F379-9FDA-484E-AFAC-D38FCF88E4CA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F507F379-9FDA-484E-AFAC-D38FCF88E4CA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F507F379-9FDA-484E-AFAC-D38FCF88E4CA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{F507F379-9FDA-484E-AFAC-D38FCF88E4CA}.Release|x86.ActiveCfg = Release|Any CPU
 		{CFAAAF47-E9C7-4A4E-A772-1488127AA4D1}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{CFAAAF47-E9C7-4A4E-A772-1488127AA4D1}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{CFAAAF47-E9C7-4A4E-A772-1488127AA4D1}.Debug|Mixed Platforms.Build.0 = Debug|x86
